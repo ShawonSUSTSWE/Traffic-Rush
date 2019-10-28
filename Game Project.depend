@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1571131329 source:d:\game project 1 2\game project\main.cpp
+	<SFML/Graphics.hpp>
+	<SFML/Audio.hpp>
+	<iostream>
+	<cstdlib>
+	<ctime>
+	<string>
+
