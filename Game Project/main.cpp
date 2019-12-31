@@ -747,7 +747,9 @@ start :
                     }
                     if ( yposition == SCREEN_HEIGH/6*4 )
                     {
-                        string Role1, Role2, Role3, Sir, Us[4], Internet;
+                        sf::Clock COLORtime;
+
+                        string Role1, Role2, Role3, Sir, Us[4], Internet, Thanks, GO_back;
                         Role1 = "Created under the guidance of";
                         Sir = "Quazi Ishtiaque Mahmud";
                         Role2 = "Developed By";
@@ -757,7 +759,11 @@ start :
                         Us[3] = "Team Genesis";
                         Role3 = "Source of sprites, images and music";
                         Internet = "Internet";
+                        Thanks = "Thank you for being with us!";
+                        GO_back = "Press ESC to go back to main menu";
                         Text role1(Role1, myfont, 30), role2(Role2, myfont, 30), role3(Role3, myfont, 30), sir(Sir, myfont, 30), Nafiz(Us[0], myfont, 30), Shawon(Us[1], myfont, 30), faltu(Us[2], myfont, 30), Team(Us[3], myfont, 30), internet(Internet, myfont, 30);
+                        Text thanks(Thanks, myfont, 30), go_Back(GO_back, myfont, 20);
+                        int color = 1;
 
                         role1.setFillColor(Color::Red);
                         role2.setFillColor(Color::Red);
@@ -768,7 +774,8 @@ start :
                         faltu.setFillColor(Color::Cyan);
                         Team.setFillColor(Color::Cyan);
                         internet.setFillColor(Color::Cyan);
-
+                        go_Back.setFillColor(Color::Green);
+                        thanks.setFillColor(Color::Magenta);
 
                         role1.setPosition(SCREEN_WIDTH/2-220,SCREEN_HEIGH+30);
                         sir.setPosition(SCREEN_WIDTH/2-160,SCREEN_HEIGH+70);
@@ -779,6 +786,8 @@ start :
                         Team.setPosition(SCREEN_WIDTH/2-80,SCREEN_HEIGH+330);
                         role3.setPosition(SCREEN_WIDTH/2-220,SCREEN_HEIGH+430);
                         internet.setPosition(SCREEN_WIDTH/2-40,SCREEN_HEIGH+470);
+                        thanks.setPosition(SCREEN_WIDTH/2-180,SCREEN_HEIGH+670);
+                        go_Back.setPosition(SCREEN_WIDTH/2-160,SCREEN_HEIGH+770);
 
                         role1.setOutlineThickness(5);
                         sir.setOutlineThickness(5);
@@ -789,9 +798,12 @@ start :
                         Team.setOutlineThickness(5);
                         role3.setOutlineThickness(5);
                         internet.setOutlineThickness(5);
+                        thanks.setOutlineThickness(5);
+                        go_Back.setOutlineThickness(5);
 
                         while(app.isOpen())
                         {
+                            color = 1;
                             app.setFramerateLimit(60);
                             Event Creditevent;
                             while( app.pollEvent(Creditevent) )
@@ -810,6 +822,28 @@ start :
                             Team.move(0, -1);
                             role3.move(0, -1);
                             internet.move(0, -1);
+                            if ( thanks.getPosition().y > SCREEN_HEIGH/2-50 )
+                            {
+                                thanks.move(0,-1);
+                                go_Back.move(0,-1);
+                                color = 0;
+                            }
+                            if ( color == 1 )
+                            {
+
+                                if ( COLORtime.getElapsedTime().asSeconds() < 2 )
+                                    thanks.setFillColor(Color::Magenta);
+                                else if ( COLORtime.getElapsedTime().asSeconds() < 4 )
+                                    thanks.setFillColor(Color::Red);
+                                else if ( COLORtime.getElapsedTime().asSeconds() < 6 )
+                                    thanks.setFillColor(Color::Yellow);
+                                else if ( COLORtime.getElapsedTime().asSeconds() < 8 )
+                                    thanks.setFillColor(Color::Cyan);
+                                else if ( COLORtime.getElapsedTime().asSeconds() < 10 )
+                                    thanks.setFillColor(Color::Blue);
+                                else if ( COLORtime.getElapsedTime().asSeconds() >= 10 )
+                                    COLORtime.restart();
+                            }
 
                             app.clear();
                             app.draw(background);
@@ -822,6 +856,11 @@ start :
                             app.draw(faltu);
                             app.draw(Team);
                             app.draw(internet);
+                            if ( color == 0 )
+                                app.draw(thanks);
+                            if ( color == 1 && ( (COLORtime.getElapsedTime().asSeconds() >= 0 && COLORtime.getElapsedTime().asSeconds() <= 0.5) || (COLORtime.getElapsedTime().asSeconds() >= 1 && COLORtime.getElapsedTime().asSeconds() <= 1.5) || (COLORtime.getElapsedTime().asSeconds() >= 2 && COLORtime.getElapsedTime().asSeconds() <= 2.5) || (COLORtime.getElapsedTime().asSeconds() >= 3 && COLORtime.getElapsedTime().asSeconds() <= 3.5) || (COLORtime.getElapsedTime().asSeconds() >= 4 && COLORtime.getElapsedTime().asSeconds() <= 4.5) || (COLORtime.getElapsedTime().asSeconds() >= 5 && COLORtime.getElapsedTime().asSeconds() <= 5.5) || (COLORtime.getElapsedTime().asSeconds() >= 6 && COLORtime.getElapsedTime().asSeconds() <= 6.5) || (COLORtime.getElapsedTime().asSeconds() >= 7 && COLORtime.getElapsedTime().asSeconds() <= 7.5) || (COLORtime.getElapsedTime().asSeconds() >= 8 && COLORtime.getElapsedTime().asSeconds() <= 8.5) || (COLORtime.getElapsedTime().asSeconds() >= 9 && COLORtime.getElapsedTime().asSeconds() <= 9.5) ) )
+                                app.draw(thanks);
+                            app.draw(go_Back);
                             app.display();
                         }
 
