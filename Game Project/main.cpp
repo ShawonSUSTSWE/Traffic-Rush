@@ -204,8 +204,21 @@ out :
             CoinY = -3264;
             CoinX = getRandomNumber(borderLeft,borderRight);
         }
-
-
+        if ( (CoinY < 0) && ( ( ( CoinX >= ( Obs1X-62 ) ) && ( CoinX <= ( Obs1X+22 ) ) ) && ( ( CoinY >= ( Obs1Y-50 ) )  && ( CoinY ) <= ( Obs1Y+50 ) ) )   ||
+            ( ( ( CoinX >= ( Obs2X-30 ) ) && ( CoinX <= ( Obs2X+30 ) ) ) && ( ( CoinY+50 >= ( Obs2Y-30 ) )  && ( CoinY-50 ) <= ( Obs2Y+30 ) ) ) ||
+            ( ( ( CoinX >= ( Obs3X-30 ) ) && ( CoinX <= ( Obs3X+30 ) ) ) && ( ( CoinY+50 >= ( Obs3Y-30 ) )  && ( CoinY-50 ) <= ( Obs3Y+30 ) ) ) ||
+            ( ( ( CoinX >= ( Obs4X-30 ) ) && ( CoinX <= ( Obs4X+30 ) ) ) && ( ( CoinY+50 >= ( Obs4Y-30 ) )  && ( CoinY-50 ) <= ( Obs4Y+30 ) ) ) )
+        {
+            same1 :
+            CoinX = getRandomNumber(borderLeft,borderRight);
+            if ( (CoinY < 0) && ( ( ( CoinX >= ( Obs1X-62 ) ) && ( CoinX <= ( Obs1X+22 ) ) ) && ( ( CoinY >= ( Obs1Y-50 ) )  && ( CoinY ) <= ( Obs1Y+50 ) ) )   ||
+            ( ( ( CoinX >= ( Obs2X-30 ) ) && ( CoinX <= ( Obs2X+30 ) ) ) && ( ( CoinY+50 >= ( Obs2Y-30 ) )  && ( CoinY-50 ) <= ( Obs2Y+30 ) ) ) ||
+            ( ( ( CoinX >= ( Obs3X-30 ) ) && ( CoinX <= ( Obs3X+30 ) ) ) && ( ( CoinY+50 >= ( Obs3Y-30 ) )  && ( CoinY-50 ) <= ( Obs3Y+30 ) ) ) ||
+            ( ( ( CoinX >= ( Obs4X-30 ) ) && ( CoinX <= ( Obs4X+30 ) ) ) && ( ( CoinY+50 >= ( Obs4Y-30 ) )  && ( CoinY-50 ) <= ( Obs4Y+30 ) ) ) )
+            {
+                goto same1;
+            }
+        }
         //Game level
         string level = "Level " + to_string((score/50)+1) +" starts here";
         Text levelshower(level, myfont, 15);
@@ -399,8 +412,16 @@ out :
             else if ( (lives == 2) || (lives < 2 && clock.getElapsedTime().asSeconds() > 5) )
              {
                 lives--;
-                RacerX = SCREEN_WIDTH/2;
-                RacerY = SCREEN_HEIGH-racerHeight;
+                if ( RacerY == SCREEN_HEIGH-racerHeight && ( RacerX >= SCREEN_WIDTH/2-50 || RacerX <= SCREEN_WIDTH/2+50 ) )
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight-100;
+                }
+                else
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight;
+                }
                 Racer.setPosition(RacerX,RacerY);
                 Time time1 = clock.restart();
              }
@@ -454,8 +475,16 @@ out :
             else if ( (lives == 2) || (lives < 2 && clock.getElapsedTime().asSeconds() > 5) )
              {
                 lives--;
-                RacerX = SCREEN_WIDTH/2;
-                RacerY = SCREEN_HEIGH-racerHeight;
+                if ( RacerY == SCREEN_HEIGH-racerHeight && ( RacerX >= SCREEN_WIDTH/2-50 || RacerX <= SCREEN_WIDTH/2+50 ) )
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight-100;
+                }
+                else
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight;
+                }
                 Racer.setPosition(RacerX,RacerY);
                 Time time1 = clock.restart();
              }
@@ -466,7 +495,7 @@ out :
                 app.clear();
                 app.draw(Background);
                 app.draw(Background1);
-                app.draw(Obs2);
+                app.draw(Obs1);
                 app.draw(Obs3);
                 app.draw(Obs4);
                 app.draw(text);
@@ -492,8 +521,16 @@ out :
             else if ( (lives == 2) || (lives < 2 && clock.getElapsedTime().asSeconds() > 5) )
              {
                 lives--;
-                RacerX = SCREEN_WIDTH/2;
-                RacerY = SCREEN_HEIGH-racerHeight;
+                if ( RacerY == SCREEN_HEIGH-racerHeight && ( RacerX >= SCREEN_WIDTH/2-50 || RacerX <= SCREEN_WIDTH/2+50 ) )
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight-100;
+                }
+                else
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight;
+                }
                 Racer.setPosition(RacerX,RacerY);
                 Time time1 = clock.restart();
              }
@@ -505,7 +542,7 @@ out :
                 app.draw(Background);
                 app.draw(Background1);
                 app.draw(Obs2);
-                app.draw(Obs3);
+                app.draw(Obs1);
                 app.draw(Obs4);
                 app.draw(text);
                 if ( ( (score > 50 && score < 60) || (score > 100 && score < 110) || (score > 150 && score < 160) || (score > 200 && score < 210) ) && timer%400 < 201 )
@@ -530,8 +567,16 @@ out :
             else if ( (lives == 2) || (lives < 2 && clock.getElapsedTime().asSeconds() > 5) )
              {
                 lives--;
-                RacerX = SCREEN_WIDTH/2;
-                RacerY = SCREEN_HEIGH-racerHeight;
+                if ( RacerY == SCREEN_HEIGH-racerHeight && ( RacerX >= SCREEN_WIDTH/2-50 || RacerX <= SCREEN_WIDTH/2+50 ) )
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight-100;
+                }
+                else
+                {
+                    RacerX = SCREEN_WIDTH/2;
+                    RacerY = SCREEN_HEIGH-racerHeight;
+                }
                 Racer.setPosition(RacerX,RacerY);
                 Time time1 = clock.restart();
              }
@@ -544,7 +589,7 @@ out :
                 app.draw(Background1);
                 app.draw(Obs2);
                 app.draw(Obs3);
-                app.draw(Obs4);
+                app.draw(Obs1);
                 app.draw(text);
                 if ( ( (score > 50 && score < 60) || (score > 100 && score < 110) || (score > 150 && score < 160) || (score > 200 && score < 210) ) && timer%400 < 201 )
                 {
